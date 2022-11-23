@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider</title>
+    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div class="container">
+            <div class="slider-wrapper"
+            @mouseover= "stopAutoPlay()"
+            @mouseleave= "autoPlay()"
+            >
+
+                <div class="item">
+                    <img :src="movie[currentIndex].image" alt="" />
+                    <div class="text">
+                        <!-- Titolo -->
+                        <h3>{{movie[currentIndex].title}}</h3>
+                        <!-- sottotitolo -->
+                        <p>
+                            {{movie[currentIndex].text}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="thumbs">
+                    <div class="thumb active">
+                        <!-- tasto indietro -->
+                        <div class="prev" @click="prev"></div>
+                        <!-- tasto avanti -->
+                        <div class="next" @click="next"></div>
+                        <!-- creo un ciclo che crea un elemento immagine con un src dell'immagine corrispondente -->
+                        <!-- image rappresnta un elemento dell'array -->
+                        <!-- I rappresenta il contatore -->
+                        <div class="thumb" v-for="(image,i) in movie"
+                        
+                            :class="(i === currentIndex) ? 'active' : ''"
+    
+                             @click="onclickImg(i)">
+
+                            <img :src="image.image" alt="" class="img-fluid">
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
